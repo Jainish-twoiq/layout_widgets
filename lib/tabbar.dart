@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:layout_widgets/stepper.dart';
 
 class TabBarTemp extends StatefulWidget {
   const TabBarTemp({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Choice {
   final String title;
   final IconData icon;
 
-  Choice({ required this.title,  required this.icon});
+  Choice({required this.title, required this.icon});
 }
 
 class _TabBarTempState extends State<TabBarTemp>
@@ -41,7 +42,9 @@ class _TabBarTempState extends State<TabBarTemp>
           centerTitle: true,
           bottom: PreferredSize(
             child: Theme(
-              data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white)),
+              data: Theme.of(context).copyWith(
+                  colorScheme: ColorScheme.fromSwatch()
+                      .copyWith(secondary: Colors.white)),
               child: Container(
                 height: 48.0,
                 alignment: Alignment.center,
@@ -57,12 +60,23 @@ class _TabBarTempState extends State<TabBarTemp>
           controller: _controller,
           children: _items.map((Choice item) {
             return Container(
-              padding: EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(25.0),
               child: Center(
                 child: Column(
                   children: <Widget>[
                     Text(item.title),
-                    Icon( item.icon,size: 120.0,)
+                    Icon(
+                      item.icon,
+                      size: 120.0,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(40.0, 150.0, 40.0, 0.0),
+                      child: ElevatedButton(
+                          onPressed: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => StepperTemp())),
+                          child: const Text('NEXT')),
+                    ),
                   ],
                 ),
               ),
